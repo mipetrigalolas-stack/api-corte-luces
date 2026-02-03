@@ -1,6 +1,7 @@
 library(plumber)
 
 #* @apiTitle API Corte de Luces
+#* @apiDescription API para uso en campo – Corte de luces
 
 #* Verificar que la API funciona
 #* @get /ping
@@ -18,4 +19,16 @@ function() {
     estado = "PENDIENTE"
   )
 }
+
+# ==============================
+# 🚀 ARRANQUE DE LA API
+# ==============================
+pr <- plumb("api.R")
+
+pr$run(
+  host = "0.0.0.0",
+  port = as.numeric(Sys.getenv("PORT", "8000"))
+)
+
+
 
